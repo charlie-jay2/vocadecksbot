@@ -1,20 +1,17 @@
-# Use the official Node.js image
-FROM node:20
+# Use official node image
+FROM node:18-alpine
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy package files
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the application
+# Copy source code
 COPY . .
 
-# Expose a port (for keep-alive HTTP server)
-EXPOSE 3000
-
-# Start the bot
+# Command to run your bot
 CMD ["node", "index.js"]
